@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gil Carrasquero</title>
+<meta name="description" content="Gil Carrasquero — Venezuelan-born humanist thinker. Soul · Power · Culture. Author of The Religion of Genius.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F3EA; --bg2:#FFFFFF; --ink:#1D1A16; --gold:#9A6212; --gold-soft:#BA7517;
+    --muted:#6F675B; --line:#D8CDB8; --deep:#1D1A16;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:'EB Garamond',Georgia,serif;
+    font-size:20px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 44px;}
+  a{color:var(--gold);text-decoration:none;}
+  section{scroll-margin-top:80px;}
+  b,strong{font-weight:600;color:var(--ink);}
+
+  /* ---------- BILINGUAL (show/hide, preserves inline markup) ---------- */
+  .es{display:none;}
+  html[lang="es"] .en{display:none;}
+  html[lang="es"] .es{display:inline;}
+
+  /* ---------- NAV ---------- */
+  nav{display:flex;justify-content:space-between;align-items:center;padding:18px 44px;
+    border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(247,243,234,.93);
+    backdrop-filter:blur(7px);z-index:50;}
+  nav .brand{font-family:'Cormorant Garamond',serif;font-size:20px;letter-spacing:3px;
+    text-transform:uppercase;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    min-width:0;flex-shrink:1;}
+  .nav-right{display:flex;align-items:center;flex-shrink:0;}
+  .menu{display:flex;align-items:center;}
+  .menu a.navlink{color:var(--muted);font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;
+    margin-left:17px;font-family:'EB Garamond',serif;}
+  .menu a.navlink:hover{color:var(--gold);}
+  .navbtn{border:1px solid var(--line);color:var(--muted)!important;padding:7px 15px;border-radius:2px;
+    font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;margin-left:14px;transition:all .2s;
+    white-space:nowrap;font-family:'EB Garamond',serif;}
+  .navbtn:hover{border-color:var(--gold);color:var(--gold)!important;}
+  .navbtn-gold{border-color:var(--gold-soft);color:var(--gold)!important;}
+  .navbtn-gold:hover{background:var(--gold-soft);color:#fff!important;}
+  .flags{margin-left:18px;display:inline-flex;gap:6px;}
+  .flags button{background:none;border:none;font-size:20px;cursor:pointer;opacity:.45;transition:opacity .2s;
+    padding:2px;line-height:1;}
+  .flags button.active{opacity:1;}
+  .hamburger{display:none;background:none;border:none;font-size:25px;color:var(--ink);cursor:pointer;
+    margin-left:14px;line-height:1;}
+
+  /* ---------- TYPE SYSTEM (dramatic contrast) ---------- */
+  .kick{font-family:'Cormorant Garamond',serif;text-transform:uppercase;letter-spacing:5px;
+    font-size:13px;color:var(--gold);margin-bottom:20px;}
+  h1,h2{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:1.04;letter-spacing:-.5px;}
+  h1 em,h2 em,.pq em{font-style:italic;color:var(--gold);font-weight:500;}
+  .band{padding:104px 0;border-bottom:1px solid var(--line);}
+  .band.alt{background:var(--bg2);}
+  .band h2{font-size:46px;margin-bottom:34px;}
+  .band p{margin-bottom:22px;max-width:64ch;}
+  .band p:last-child{margin-bottom:0;}
+  .lead-link{font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:.3px;margin-top:6px;}
+  .btn{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:13px 28px;
+    font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;
+    transition:all .2s;margin:6px 14px 6px 0;}
+  .btn:hover{background:var(--gold);color:#fff;}
+  .btn-solid{background:var(--gold);color:#fff;}
+  .btn-solid:hover{background:var(--gold-soft);}
+
+  /* ---------- HERO ---------- */
+  .hero{display:flex;gap:60px;align-items:center;max-width:1200px;margin:0 auto;padding:72px 44px;}
+  .hero .htext{flex:1 1 0;min-width:0;}
+  .hero .eyebrow{font-family:'Cormorant Garamond',serif;text-transform:uppercase;letter-spacing:6px;
+    font-size:14px;color:var(--gold);margin-bottom:26px;}
+  .hero h1{font-size:56px;margin-bottom:30px;}
+  .hero .intro{font-size:19px;color:#3a352c;margin-bottom:34px;max-width:52ch;}
+  .hero .hphoto{flex:0 0 auto;}
+  .hero .hphoto img{display:block;height:auto;width:auto;max-height:80vh;max-width:46vw;
+    border:1px solid var(--line);}
+
+  /* ---------- INSTITUTIONS BAND ---------- */
+  .institutions{background:var(--deep);color:#E8DFC9;padding:26px 44px;text-align:center;}
+  .institutions .row{font-family:'Cormorant Garamond',serif;letter-spacing:3px;text-transform:uppercase;
+    font-size:14px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 0;}
+  .institutions .row span.it{padding:0 22px;border-right:1px solid rgba(232,223,201,.22);white-space:nowrap;}
+  .institutions .row span.it:last-child{border-right:none;}
+  .institutions .row span.gld{color:var(--gold-soft);}
+
+  /* ---------- HOME TEASER ---------- */
+  .teaser{background:var(--bg2);border-bottom:1px solid var(--line);padding:64px 0;}
+  .teaser p{font-family:'Cormorant Garamond',serif;font-size:25px;line-height:1.45;max-width:74ch;color:#3a352c;}
+  .teaser a{font-style:italic;}
+
+  /* ---------- BIO ---------- */
+  .bio-grid{display:grid;grid-template-columns:420px 1fr;gap:50px;align-items:start;}
+  .bio-photo{position:sticky;top:96px;}
+  .bio-photo img{width:100%;border:1px solid var(--line);display:block;}
+  .bio-photo .cap{font-size:13.5px;color:var(--muted);font-style:italic;margin-top:10px;text-align:center;}
+  .bio-hook{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;line-height:1.5;
+    color:#3a352c;margin-bottom:34px;max-width:62ch;}
+  .bio-body p{margin-bottom:22px;max-width:64ch;}
+  .bio-close{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;color:var(--gold);
+    margin-top:30px;max-width:60ch;}
+
+  /* ---------- LINEAGE ---------- */
+  .lineage-frame{font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.5;color:#3a352c;
+    max-width:80ch;margin-bottom:50px;}
+  .lineage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:38px 34px;}
+  .lin{}
+  .lin img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--line);
+    filter:grayscale(100%);}
+  .lin .nm{font-family:'Cormorant Garamond',serif;font-size:22px;margin-top:14px;color:var(--ink);}
+  .lin .rel{font-size:16px;color:var(--muted);font-style:italic;margin-top:2px;}
+
+  /* ---------- PULL-QUOTE ---------- */
+  .pq{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:108px 44px;text-align:center;}
+  .pq blockquote{font-family:'Cormorant Garamond',serif;font-size:42px;line-height:1.18;font-weight:500;
+    max-width:18ch;margin:0 auto;letter-spacing:-.5px;}
+
+  /* ---------- SUBHEAD ---------- */
+  .subhead{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:25px;color:var(--ink);
+    margin-top:16px;margin-bottom:6px;}
+
+  /* ---------- VIDEO FEATURE ---------- */
+  .video-feature{max-width:900px;margin:40px 0 10px;}
+  .video-feature .subhead{margin-bottom:14px;}
+  .video-frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--deep);
+    border:1px solid var(--line);border-radius:3px;overflow:hidden;
+    box-shadow:0 2px 24px rgba(29,26,22,.10);}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+  .video-caption{margin-top:14px;font-size:16px;line-height:1.55;color:var(--muted);}
+  .video-caption em{color:var(--ink);}
+  @supports not (aspect-ratio:16/9){.video-frame{height:0;padding-bottom:56.25%;}}
+
+  /* ---------- PODCAST CARD ---------- */
+  .pod-card{max-width:900px;margin-top:14px;background:var(--bg);border:1px solid var(--line);
+    border-left:3px solid var(--gold);border-radius:3px;padding:26px 30px;}
+  .pod-card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;
+    letter-spacing:.5px;margin-bottom:10px;}
+  .pod-card .status{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+
+  /* ---------- CONVERSATIONS ---------- */
+  .conv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:34px;max-width:900px;margin-top:14px;}
+  .conv-card{background:var(--bg2);border:1px solid var(--line);border-radius:3px;overflow:hidden;}
+  .conv-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-bottom:1px solid var(--line);
+    filter:grayscale(100%);}
+  .conv-card .cbody{padding:20px 24px;}
+  .conv-card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:23px;margin-bottom:8px;}
+  .conv-card .status{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+
+  /* ---------- CONTACT ---------- */
+  .cta-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:820px;margin:14px 0 42px;}
+  .cta-card{border:1px solid var(--line);border-radius:3px;padding:24px 22px;background:var(--bg2);}
+  .cta-card .ct{font-family:'Cormorant Garamond',serif;font-size:21px;margin-bottom:6px;}
+  .cta-card .cd{font-size:15px;color:var(--muted);margin-bottom:14px;}
+  .cta-card a{font-size:14px;letter-spacing:1.5px;text-transform:uppercase;}
+  .contact-grid{display:grid;grid-template-columns:1fr;max-width:600px;}
+  form .field{margin-bottom:18px;}
+  form label{display:block;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+    margin-bottom:7px;}
+  form input,form textarea{width:100%;background:var(--bg2);border:1px solid var(--line);padding:12px 14px;
+    font-family:'EB Garamond',serif;font-size:18px;color:var(--ink);border-radius:2px;}
+  form input:focus,form textarea:focus{outline:none;border-color:var(--gold-soft);}
+  form textarea{min-height:130px;resize:vertical;}
+  button.submit{border:1px solid var(--gold);background:none;color:var(--gold);padding:13px 30px;
+    font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;
+    cursor:pointer;transition:all .2s;}
+  button.submit:hover{background:var(--gold);color:#fff;}
+  .social-line{margin-top:26px;}
+  .social-line a{margin-right:18px;font-size:16px;}
+  .hp{position:absolute;left:-9999px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:56px 44px;text-align:center;color:var(--muted);font-size:15px;}
+  footer .t{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--ink);
+    margin-bottom:16px;max-width:60ch;margin-left:auto;margin-right:auto;}
+  footer .flinks a{color:var(--muted);}
+  footer .flinks a:hover{color:var(--gold);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:980px){
+    .menu{position:fixed;top:60px;left:0;right:0;width:100%;background:var(--bg);flex-direction:column;
+      align-items:flex-start;border-bottom:1px solid var(--line);padding:6px 30px 18px;display:none;
+      box-shadow:0 12px 18px rgba(29,26,22,.08);z-index:60;}
+    .menu.open{display:flex;}
+    .menu a.navlink{margin-left:0;padding:12px 0;font-size:14px;border-bottom:1px solid var(--line);width:100%;}
+    .menu a.navlink:last-child{border-bottom:none;}
+    .hamburger{display:block;}
+    .hero{flex-direction:column;align-items:flex-start;gap:34px;padding:44px 44px 8px;}
+    .hero .htext{order:2;width:100%;}
+    .hero .hphoto{order:1;align-self:center;}
+    .hero .hphoto img{max-height:none;max-width:min(380px,76vw);width:100%;}
+    .bio-grid{grid-template-columns:1fr;gap:30px;}
+    .bio-photo{position:static;max-width:340px;}
+    .lineage-grid{grid-template-columns:repeat(2,1fr);}
+    .conv-grid{grid-template-columns:1fr;}
+    .cta-row{grid-template-columns:1fr;}
+  }
+  @media(max-width:760px){
+    body{font-size:18px;}
+    .wrap{padding:0 26px;}
+    .hwrap-left{padding:0 26px;}
+    nav{padding:15px 22px;}
+    .hero h1{font-size:42px;}
+    .band{padding:64px 0;}
+    .band h2{font-size:34px;}
+    .pq{padding:70px 26px;}
+    .pq blockquote{font-size:30px;}
+    .institutions{padding:22px 20px;}
+    .institutions .row{font-size:12px;}
+    .institutions .row span.it{padding:0 13px;}
+    .navbtn{padding:6px 10px;font-size:10.5px;margin-left:8px;}
+    .flags{margin-left:10px;}
+  }
+  @media(max-width:480px){
+    .lineage-grid{grid-template-columns:1fr 1fr;gap:20px 16px;}
+    nav .brand{font-size:14px;letter-spacing:1.5px;}
+    .navbtn{padding:5px 8px;font-size:10px;letter-spacing:.5px;margin-left:6px;}
+    .institutions .row span.it{border-right:none;padding:2px 12px;}
+  }
+
+  /* ---------- HOME: LATEST ESSAYS (added 2026-09-25) ---------- */
+  .he-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:10px 0 34px;max-width:980px;}
+  .he-es{display:none;}
+  html[lang="es"] .he-en{display:none;}
+  html[lang="es"] .he-es{display:grid;}
+  html[lang="es"] a.he-btn.es{display:inline-block;}
+  .he-card{display:block;color:var(--ink);}
+  .he-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;background:var(--bg);border:1px solid var(--line);}
+  .he-card .he-t{display:block;font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.2;margin-top:12px;}
+  .he-card:hover .he-t{color:var(--gold);}
+  .he-card .he-d{display:block;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+  @media(max-width:760px){ .he-grid{grid-template-columns:1fr;} }
+
+  /* unified thumbnails (added 2026-09-25) */
+  .essay-item img,.he-card img{width:100%;height:auto;aspect-ratio:3/2;object-fit:contain;background:#1D1A16;border:1px solid var(--line);}
+  .essay-item .iread{border:1px solid var(--gold);padding:6px 14px;}
+</style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav>
+    <a class="brand" href="#home">Gil Carrasquero</a>
+    <div class="nav-right">
+      <div class="menu" id="menu">
+        <a class="navlink" href="#bio"><span class="en">Bio</span><span class="es">Bio</span></a>
+        <a class="navlink" href="#lineage"><span class="en">The Lineage</span><span class="es">El Linaje</span></a>
+        <a class="navlink" href="#work"><span class="en">The Work</span><span class="es">La Obra</span></a>
+        <a class="navlink" href="#essays"><span class="en">Essays</span><span class="es">Ensayos</span></a>
+        <a class="navlink" href="#teaching"><span class="en">Teaching</span><span class="es">Enseñanza</span></a>
+        <a class="navlink" href="#talks"><span class="en">Talks</span><span class="es">Charlas</span></a>
+        <a class="navlink" href="#conversations"><span class="en">Conversations</span><span class="es">Conversaciones</span></a>
+        <a class="navlink" href="#advisory"><span class="en">Advisory</span><span class="es">Asesoría</span></a>
+        <a class="navlink" href="#contact"><span class="en">Contact</span><span class="es">Contacto</span></a>
+      </div>
+      <div class="actions" style="display:flex;align-items:center;">
+        <a class="navbtn" href="https://substack.com/@gilcarrasquero" target="_blank" rel="noopener">Substack</a>
+        <a class="navbtn navbtn-gold" href="https://thereligionofgenius.com" target="_blank" rel="noopener"><span class="en">The Book</span><span class="es">El Libro</span></a>
+        <span class="flags">
+          <button onclick="setLang('en')" id="flag-en" class="active" title="English" aria-label="English">🇬🇧</button>
+          <button onclick="setLang('es')" id="flag-es" title="Español" aria-label="Español">🇪🇸</button>
+        </span>
+        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== 1 · HOME ===================== -->
+  <header class="hero" id="home">
+    <div class="htext">
+      <div class="eyebrow"><span class="en">Soul · Power · Culture</span><span class="es">Alma · Poder · Cultura</span></div>
+      <h1>
+        <span class="en">I followed the recipe everyone told me would make me happy. Instead, it brought me to an <em>existential crisis</em>.</span>
+        <span class="es">Seguí la receta que todos me dijeron que me haría feliz. En cambio, me llevó a una <em>crisis existencial</em>.</span>
+      </h1>
+      <p class="intro">
+        <span class="en">I did what our age calls success — finance, the elite credentials, the climb. I reached the place the map promised. The emptiness I found there was my first real lesson about the soul. We read the crises of our time as political, economic, personal. <b>They are one crisis wearing many masks</b>: a soul that followed the map instead of its own daimon. The way back is not a better strategy. It is the courage to create the work that will create you.</span>
+        <span class="es">Hice lo que nuestra época llama éxito: las finanzas, los títulos, el ascenso. Llegué al lugar que el mapa prometía. El vacío que encontré ahí fue mi primera lección verdadera sobre el alma. Leemos las crisis de nuestro tiempo como políticas, económicas, personales. <b>Son una sola crisis con muchas máscaras</b>: un alma que siguió el mapa en lugar de su propio daimon. La salida no es una mejor estrategia. Es el coraje de crear la obra que te creará.</span>
+      </p>
+      <div>
+        <a class="btn" href="https://substack.com/@gilcarrasquero" target="_blank" rel="noopener"><span class="en">Read the essays →</span><span class="es">Leer los ensayos →</span></a>
+        <a class="btn btn-solid" href="https://thereligionofgenius.com" target="_blank" rel="noopener"><span class="en">The Book →</span><span class="es">El Libro →</span></a>
+      </div>
+    </div>
+    <div class="hphoto"><img src="images/hero.jpg" alt="Gil Carrasquero"></div>
+  </header>
+
+  <!-- INSTITUTIONS BAND -->
+  <div class="institutions">
+    <div class="row">
+      <span class="it gld">Stanford</span><span class="it">Harvard Kennedy School</span><span class="it">Salomon Brothers</span><span class="it">C.G. Jung Institute</span><span class="it gld">Eranos</span><span class="it">IESA</span>
+    </div>
+  </div>
+
+  <!-- HOME TEASER → BIO -->
+  <section class="teaser">
+    <div class="wrap">
+      <p>
+        <span class="en">He spent decades inside the worlds he now reads from within — finance, power, politics — before turning toward the soul. <a href="#bio">Read the full story →</a></span>
+        <span class="es">Pasó décadas dentro de los mundos que hoy lee desde adentro —las finanzas, el poder, la política— antes de volverse hacia el alma. <a href="#bio">Leer la historia completa →</a></span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== 2 · BIO ===================== -->
+  <section class="band" id="bio">
+    <div class="wrap">
+      <div class="kick"><span class="en">Bio</span><span class="es">Bio</span></div>
+      <h2><span class="en">The Map and the <em>Void</em></span><span class="es">El Mapa y el <em>Vacío</em></span></h2>
+      <div class="bio-grid">
+        <div class="bio-photo">
+          <img src="images/bio.jpg" alt="Gil Carrasquero at Eranos">
+          <div class="cap"><span class="en">Gil while working on The Religion of Genius at Eranos (Ascona, Switzerland)</span><span class="es">Gil trabajando en La Religión de los Genios en Eranos (Ascona, Suiza)</span></div>
+        </div>
+        <div>
+          <div class="bio-hook">
+            <span class="en">If I wanted to impress you, I would tell you about anything in my story that sounds like success. I would talk about my Fulbright Scholarship that led to a Stanford MBA, about my Harvard MPA, about my very successful role as Representative of Salomon Brothers in Venezuela when I was only 29. About my participation in politics and my role in the Venezuelan resistance to an ominous and cruel dictatorship. But those are the things one offers to be admired, not to be known. And this is not a place for being admired. To be known, for you to begin understanding who I am, I have to tell you instead about my painful losses. Those losses have sculpted my soul and made me who I am.</span>
+            <span class="es">Si quisiera impresionarte, te hablaría de todo lo que en mi historia suena a éxito. Te hablaría de mi beca Fulbright que me llevó a un MBA en Stanford, de mi MPA en Harvard, de mi muy exitoso papel como Representante de Salomon Brothers en Venezuela cuando tenía apenas 29 años. De mi participación en la política y de mi papel en la resistencia venezolana frente a una dictadura ominosa y cruel. Pero esas son las cosas que uno ofrece para ser admirado, no para ser conocido. Y este no es un lugar para ser admirado. Para ser conocido —para que empieces a entender quién soy— tengo que hablarte, en cambio, de mis pérdidas dolorosas. Esas pérdidas han esculpido mi alma y me han hecho quien soy.</span>
+          </div>
+          <div class="bio-body">
+            <p><span class="en">Gil Carrasquero was born in Caracas, Venezuela, on July 24th, the day his country honors the birth of its founding hero — a coincidence that, in a family like his, felt less like chance than like instruction. His was a lineage of public distinction: a family of distinguished lawyers, an attorney general, a minister of state, an ambassador, a grandmother who founded the nation's nursing profession. In such a family, and in a country where to hold power was the highest form of significance, affection arrived with conditions and it came through admiration. One had to shine in order to be loved. From this, the boy drew the lesson that would organize the first four decades of his life — <b>that a man is worth what he achieves</b>, and that he would have to achieve more than those who came before him.</span><span class="es">Gil Carrasquero nació en Caracas, Venezuela, el 24 de julio, el día en que su país honra el nacimiento de su héroe fundador —una coincidencia que, en una familia como la suya, se sintió menos como azar que como instrucción. La suya era una estirpe de distinción pública: una familia de abogados distinguidos, un fiscal general, un ministro de Estado, un embajador, una abuela que fundó la profesión de enfermería del país. En una familia así, y en un país donde ostentar el poder era la forma más alta de significación, el afecto llegaba con condiciones y llegaba a través de la admiración. Había que brillar para ser amado. De ahí extrajo el niño la lección que organizaría las primeras cuatro décadas de su vida: <b>que un hombre vale lo que logra</b>, y que él tendría que lograr más que quienes lo precedieron.</span></p>
+
+            <p><span class="en">So he set out, and he followed the map his culture had drawn for a life of significance further than most. He trained first as a lawyer and a political scientist, certain that his true vocation was politics, the service of his country from the heights its tradition honored. But in a nation perpetually near ruin, he chose first to secure himself: he crossed the ocean as a Fulbright Fellow, earned an MBA at Stanford, and entered the world of global finance, becoming, while still young (29), the exclusive Representative of Salomon Brothers, one of the Wall Street powerhouses of the time. That immediately made him one of the most visible figures of his country's financial world. For close to a decade, he was a full-time investment banker, which led him to close many of the most iconic deals of his time, including the privatization of SIDOR and Banco de Venezuela. He played a key leading role in the 1993 PDV America bond deal that earned Latin American Finance's 1993 Deal of the Year Award. During the 1990s he became a public figure and a leading opinion voice through his Sunday op-ed column in El Nacional, one of the leading Venezuelan newspapers.</span><span class="es">Así que se puso en marcha, y siguió, más lejos que la mayoría, el mapa que su cultura había trazado para una vida de significación. Se formó primero como abogado y politólogo, seguro de que su verdadera vocación era la política, el servicio a su país desde las alturas que su tradición honraba. Pero en una nación perpetuamente al borde de la ruina, eligió primero asegurarse a sí mismo: cruzó el océano como becario Fulbright, obtuvo un MBA en Stanford y entró en el mundo de las finanzas globales, convirtiéndose, siendo aún joven (29), en el Representante exclusivo de Salomon Brothers, una de las potencias de Wall Street de la época. Eso lo hizo de inmediato una de las figuras más visibles del mundo financiero de su país. Durante cerca de una década fue banquero de inversión a tiempo completo, lo que lo llevó a cerrar muchas de las operaciones más emblemáticas de su tiempo, entre ellas la privatización de SIDOR y del Banco de Venezuela. Tuvo un papel protagónico en la emisión de bonos de PDV America de 1993, que obtuvo el premio Deal of the Year 1993 de Latin American Finance. Durante los años noventa se convirtió en figura pública y en una voz de opinión destacada a través de su columna dominical en El Nacional, uno de los principales periódicos venezolanos.</span></p>
+
+            <p><span class="en">As his country came under the threat of the populist leader Hugo Chávez, he decided to quit his role as an investment banker and explore his passion for politics. He played an active public role as an opposition voice against Hugo Chávez. When Chávez won the election, he felt it was time to fulfill a lifelong dream of attending the Kennedy School at Harvard University. He went to Harvard as a Mason Fellow for a master's in Public Administration and stayed on as a Teaching Fellow at the Center for Public Leadership.</span><span class="es">Cuando su país quedó bajo la amenaza del líder populista Hugo Chávez, decidió dejar su papel como banquero de inversión y explorar su pasión por la política. Tuvo un papel público activo como voz de oposición frente a Hugo Chávez. Cuando Chávez ganó las elecciones, sintió que era momento de cumplir un sueño de toda la vida: asistir a la Kennedy School de la Universidad de Harvard. Fue a Harvard como Mason Fellow para una maestría en Administración Pública y se quedó como Teaching Fellow en el Center for Public Leadership.</span></p>
+
+            <p><span class="en">Through all those years, a second vocation ran in parallel: he taught. As a Teaching Fellow at Harvard's Center for Public Leadership he worked directly alongside Ronald Heifetz and Dean Williams; he served as Invited Faculty at IESA, as Senior Fellow at the James MacGregor Burns Leadership Academy at the University of Maryland, and as a facilitator in the political leadership program for Latin American leaders run jointly by the Inter-American Development Bank and George Washington University. He delivered hundreds of lectures across the Americas on economics, politics, and geopolitics and, in time, before gatherings of Jungian scholars. Out of this work he forged a framework of his own, Transcendent Leadership: a way of understanding leadership not as technique but as an inner, almost alchemical process — the first place where the two worlds he had always lived between, power and soul, became a single teaching.</span><span class="es">A lo largo de todos esos años, una segunda vocación corría en paralelo: enseñaba. Como Teaching Fellow en el Center for Public Leadership de Harvard trabajó directamente junto a Ronald Heifetz y Dean Williams; fue Invited Faculty en el IESA, Senior Fellow en la James MacGregor Burns Leadership Academy de la Universidad de Maryland, y facilitador en el programa de liderazgo político para líderes latinoamericanos que dirigían conjuntamente el Banco Interamericano de Desarrollo y la Universidad George Washington. Dictó cientos de conferencias por toda América sobre economía, política y geopolítica y, con el tiempo, ante reuniones de académicos junguianos. De ese trabajo forjó un marco propio, el Liderazgo Trascendente: una manera de entender el liderazgo no como técnica sino como un proceso interior, casi alquímico —el primer lugar donde los dos mundos entre los que siempre había vivido, el poder y el alma, se volvieron una sola enseñanza.</span></p>
+
+            <p><span class="en">Each summit promised that this, at last, would be enough. <b>None of them were.</b></span><span class="es">Cada cima prometía que esto, por fin, bastaría. <b>Ninguna bastó.</b></span></p>
+
+            <p><span class="en">What undid the map was not a failure of will. <b>It was loss.</b> Across the years, the things he had built and the things he most loved came apart in turn — first a financial crisis hit him hard, then a divorce and the loss of family dreams, and finally Venezuela — the country he loved, called home, and had made part of his life plan — also came apart. Each collapse stripped away an identity he had mistaken for himself; each returned him, against his will, closer to the question waiting underneath: who is a man when everything he has identified with collapses?</span><span class="es">Lo que deshizo el mapa no fue una falla de la voluntad. <b>Fue la pérdida.</b> A lo largo de los años, lo que había construido y lo que más amaba se deshicieron por turnos —primero una crisis financiera lo golpeó con fuerza, luego un divorcio y la pérdida de los sueños de familia, y finalmente Venezuela —el país que amaba, que llamaba hogar y que había hecho parte de su plan de vida— también se vino abajo. Cada derrumbe le arrancó una identidad que había confundido consigo mismo; cada uno lo devolvió, contra su voluntad, más cerca de la pregunta que esperaba debajo: ¿quién es un hombre cuando todo aquello con lo que se ha identificado se derrumba?</span></p>
+
+            <p><span class="en">Divorce and the loss of the family was the deepest of those wounds. Venezuela, nevertheless, was a crucially defining one. He had chosen it once over an easier life abroad, out of love and the old conviction that he was meant to serve it. He watched it fall instead — a functioning country descending into authoritarian ruin, not as theory but as daily life. He did not watch in silence: for years he was a public voice against that collapse, in the press, on television, and among the scattered millions of the diaspora, until resistance gave way to exile. And in that long grief he arrived at the insight that would become the center of his work — <b>that the great public catastrophes of our age are not, at their root, political.</b> They are symptoms of an abandoned soul, of a people who, having lost their own center of meaning, surrender their longing to false redeemers. He had gone to save his country. The country taught him, instead, what a soul looks like when it loses itself.</span><span class="es">El divorcio y la pérdida de la familia fue la más honda de esas heridas. Venezuela, sin embargo, fue una decisiva. La había elegido una vez por encima de una vida más fácil en el extranjero, por amor y por la vieja convicción de que estaba destinado a servirla. La vio caer, en cambio —un país en funcionamiento descendiendo a la ruina autoritaria, no como teoría sino como vida diaria. No miró en silencio: durante años fue una voz pública contra ese colapso, en la prensa, en la televisión y entre los millones dispersos de la diáspora, hasta que la resistencia dio paso al exilio. Y en ese largo duelo llegó a la intuición que se volvería el centro de su obra —<b>que las grandes catástrofes públicas de nuestra época no son, en su raíz, políticas.</b> Son síntomas de un alma abandonada, de un pueblo que, habiendo perdido su propio centro de sentido, entrega su anhelo a falsos redentores. Había ido a salvar a su país. El país le enseñó, en cambio, cómo luce un alma cuando se pierde a sí misma.</span></p>
+
+            <p><span class="en">That lesson turned him inward. What began as a search for relief from his own grief became the discipline of decades. He spent eleven years in analysis with Rafael López-Pedraza, one of the most original minds the Jungian tradition has produced — a master who refused, pointedly, to let him turn the work into another conquest, and insisted he tend to himself before presuming to heal the world. He immersed himself in depth psychology, myth, and the symbolic life: years at the C.G. Jung Institute and Pacifica, and time as Scholar in Residence at Eranos, the place in Switzerland where Jung, Kerényi, and Hillman once gathered to ask what the soul is. He had come looking for a way to master the world's hidden mechanisms. He discovered instead that he had to be mastered by something deeper — and that every wound he had spent his life fleeing was, in truth, a door.</span><span class="es">Esa lección lo volvió hacia adentro. Lo que comenzó como una búsqueda de alivio para su propio duelo se convirtió en la disciplina de décadas. Pasó once años en análisis con Rafael López-Pedraza, una de las mentes más originales que ha dado la tradición junguiana —un maestro que se negó, deliberadamente, a dejarlo convertir el trabajo en otra conquista, y que insistió en que se atendiera a sí mismo antes de presumir de sanar al mundo. Se sumergió en la psicología profunda, el mito y la vida simbólica: años en el Instituto C.G. Jung y en Pacifica, y un tiempo como Scholar in Residence en Eranos, el lugar de Suiza donde Jung, Kerényi y Hillman se reunieron alguna vez a preguntar qué es el alma. Había llegado buscando una manera de dominar los mecanismos ocultos del mundo. Descubrió, en cambio, que tenía que ser dominado por algo más profundo —y que cada herida de la que había pasado la vida huyendo era, en verdad, una puerta.</span></p>
+
+            <p><span class="en">He has continued to serve, though no longer from the heights he once coveted. He mentors entrepreneurs through Endeavor, and he has never stopped giving his time to Venezuela and its diaspora. He is not a man who claims to have arrived: nothing in him is finished or fully healed; it is worked, and on its way. But he has made a certain peace — the peace of one who no longer needs to feel important in order to be at rest, and who has learned, in his own words, <b>to suffer creatively</b>: to take what breaks him and turn it into something worth making. He lives now in Madrid, a city whose depth and beauty have given his restless temperament a home.</span><span class="es">Ha seguido sirviendo, aunque ya no desde las alturas que alguna vez codició. Mentorea a emprendedores a través de Endeavor, y nunca ha dejado de dar su tiempo a Venezuela y a su diáspora. No es un hombre que pretenda haber llegado: nada en él está terminado ni del todo sanado; está trabajado, y en camino. Pero ha hecho cierta paz —la paz de quien ya no necesita sentirse importante para estar en reposo, y que ha aprendido, en sus propias palabras, <b>a sufrir creativamente</b>: a tomar lo que lo quiebra y convertirlo en algo digno de hacerse. Vive ahora en Madrid, una ciudad cuya hondura y belleza le han dado un hogar a su temperamento inquieto.</span></p>
+
+            <p><span class="en">Out of all of it — the losses, the long apprenticeship to the soul, the years of teaching and grief and search — comes his work, and the book that now carries its name: <em>The Religion of Genius</em>. He writes it, before anyone else, for his children Gilber, Mari, and Guille. And for everyone who followed the map exactly as instructed, arrived at the life they were promised, and found the emptiness still waiting there. To them he offers no new summit. Only a compass for the way back to themselves.</span><span class="es">De todo ello —las pérdidas, el largo aprendizaje del alma, los años de enseñanza y duelo y búsqueda— surge su obra, y el libro que hoy lleva su nombre: <em>La Religión de los Genios</em>. Lo escribe, antes que para nadie, para sus hijos Gilber, Mari y Guille. Y para todos los que siguieron el mapa exactamente como se les indicó, llegaron a la vida que les prometieron y encontraron el vacío todavía esperando ahí. A ellos no les ofrece una nueva cima. Solo una brújula para el camino de regreso a sí mismos.</span></p>
+          </div>
+          <div class="bio-close">
+            <span class="en">If any of this is familiar, you are not lost. You are only, at last, ready for the way home.</span>
+            <span class="es">Si algo de esto te resulta familiar, no estás perdido. Solo estás, por fin, listo para el camino de regreso a casa.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3 · THE LINEAGE ===================== -->
+  <section class="band alt" id="lineage">
+    <div class="wrap">
+      <div class="kick"><span class="en">The Lineage</span><span class="es">El Linaje</span></div>
+      <h2><span class="en">The <em>Lineage</em></span><span class="es">El <em>Linaje</em></span></h2>
+      <p class="lineage-frame">
+        <span class="en">No one thinks alone. These are the teachers, interlocutors, and friends in whose company this work took shape — a living tradition I am proud to belong to.</span>
+        <span class="es">Nadie piensa solo. Estos son los maestros, interlocutores y amigos en cuya compañía esta obra tomó forma — una tradición viva a la que me honra pertenecer.</span>
+      </p>
+      <div class="lineage-grid">
+        <div class="lin">
+          <img src="images/lineage-lopez.jpg" alt="Gil Carrasquero with Rafael López-Pedraza">
+          <div class="nm">Rafael López-Pedraza</div>
+          <div class="rel"><span class="en">Co-founder of Archetypal Psychology</span><span class="es">Cofundador de la Psicología Arquetipal</span></div>
+          <div class="rel"><span class="en">Analyst, teacher and mentor for over 12 years</span><span class="es">Analista, maestro y mentor durante más de 12 años</span></div>
+        </div>
+        <div class="lin">
+          <img src="images/lineage-stein.jpg" alt="Gil Carrasquero with Murray Stein">
+          <div class="nm">Murray Stein</div>
+          <div class="rel"><span class="en">Best-selling author · Former President of IAAP · Founder of ISAP Zurich · Founder of Chiron Publishing</span><span class="es">Autor superventas · Expresidente de la IAAP · Fundador del ISAP Zúrich · Fundador de Chiron Publishing</span></div>
+          <div class="rel"><span class="en">Interlocutor, friend and mentor</span><span class="es">Interlocutor, amigo y mentor</span></div>
+        </div>
+        <div class="lin">
+          <img src="images/lineage-hollis.jpg" alt="Gil Carrasquero with James Hollis">
+          <div class="nm">James Hollis</div>
+          <div class="rel"><span class="en">Best-selling Jungian author</span><span class="es">Autor junguiano superventas</span></div>
+          <div class="rel"><span class="en">Teacher, friend, mentor and interlocutor</span><span class="es">Maestro, amigo, mentor e interlocutor</span></div>
+        </div>
+        <div class="lin">
+          <img src="images/lineage-meade.jpg" alt="Gil Carrasquero with Michael Meade">
+          <div class="nm">Michael Meade</div>
+          <div class="rel"><span class="en">Best-selling author · Mythologist · Storyteller · Co-founder of the Men's Movement</span><span class="es">Autor superventas · Mitólogo · Narrador · Cofundador del Movimiento de Hombres</span></div>
+          <div class="rel"><span class="en">Teacher and friend</span><span class="es">Maestro y amigo</span></div>
+        </div>
+        <div class="lin">
+          <img src="images/lineage-ray.jpg" alt="Gil Carrasquero with Michael Ray">
+          <div class="nm">Michael Ray</div>
+          <div class="rel"><span class="en">Best-selling author · Creator of the Creativity Course at Stanford Business School</span><span class="es">Autor superventas · Creador del Curso de Creatividad en la Stanford Business School</span></div>
+          <div class="rel"><span class="en">Teacher, friend and mentor</span><span class="es">Maestro, amigo y mentor</span></div>
+        </div>
+        <div class="lin">
+          <img src="images/lineage-collins.jpg" alt="Gil Carrasquero with Jim Collins">
+          <div class="nm">Jim Collins</div>
+          <div class="rel"><span class="en">Best-selling author of Built to Last, Good to Great and What to Make of a Life</span><span class="es">Autor superventas de Built to Last, Good to Great y What to Make of a Life</span></div>
+          <div class="rel"><span class="en">Teacher, life-long interlocutor and friend</span><span class="es">Maestro, interlocutor de toda la vida y amigo</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL-QUOTE -->
+  <div class="pq">
+    <blockquote>
+      <span class="en">Have the courage to create the Opus that will <em>Create You</em>!</span>
+      <span class="es">¡Ten el coraje de crear la Obra que <em>te Creará</em>!</span>
+    </blockquote>
+  </div>
+
+  <!-- ===================== 4 · THE WORK ===================== -->
+  <section class="band" id="work">
+    <div class="wrap">
+      <div class="kick"><span class="en">The Work</span><span class="es">La Obra</span></div>
+      <h2><span class="en">The <em>Work</em></span><span class="es">La <em>Obra</em></span></h2>
+      <p><span class="en"><em>The Religion of Genius — Mending an Orphaned World, One Summoned Soul at a Time.</em> A work about recovering the inner call — the daimon — in an age that has lost its sacred center, and the courage to incarnate it as genius in the world.</span><span class="es"><em>La Religión de los Genios — Remendando un mundo huérfano, un alma convocada a la vez.</em> Una obra sobre recuperar el llamado interior —el daimon— en una época que ha perdido su centro sagrado, y el coraje de encarnarlo como genio en el mundo.</span></p>
+      <p class="lead-link"><a href="https://thereligionofgenius.com" target="_blank" rel="noopener"><span class="en">→ Enter the work: thereligionofgenius.com</span><span class="es">→ Entra en la obra: thereligionofgenius.com</span></a></p>
+    </div>
+  </section>
+
+  <!-- ===================== 5 · ESSAYS ===================== -->
+  <section class="band alt" id="essays">
+    <div class="wrap">
+      <div class="kick"><span class="en">Essays</span><span class="es">Ensayos</span></div>
+      <h2><span class="en"><em>Living</em> thought</span><span class="es">Pensamiento <em>vivo</em></span></h2>
+      <p><span class="en">Living thought, in progress. New essays on depth psychology, meaning, power, and the examined life — published weekly on Substack.</span><span class="es">Pensamiento vivo, en curso. Nuevos ensayos sobre psicología profunda, sentido, poder y la vida examinada —publicados cada semana en Substack.</span></p>
+      <div class="he-grid he-en">
+          <a class="he-card" href="/en/essays/sicily-and-us/"><img src="/images/ensayos/7ab34981-9bff-4adb-bf2e-d62ccf7d0779_1672x941.png" width="1672" height="941" loading="lazy" alt="Cover image for the essay “Sicily and Us”"><span class="he-t">Sicily and Us</span><span class="he-d">20 September 2026</span></a>
+          <a class="he-card" href="/en/essays/dionysus-at-taormina/"><img src="/images/ensayos/f870d24a-630c-4416-8b56-be828ccf15e2_1672x941.png" width="1672" height="941" loading="lazy" alt="Cover image for the essay “Dionysus at Taormina”"><span class="he-t">Dionysus at Taormina</span><span class="he-d">13 September 2026</span></a>
+          <a class="he-card" href="/en/essays/the-void-and-the-strongman/"><img src="/images/ensayos/7311c6bb-8a7a-4968-abfd-8c8d8fd2df6c_1672x941.png" width="1672" height="941" loading="lazy" alt="Cover image for the essay “The Void and the Strongman”"><span class="he-t">The Void and the Strongman</span><span class="he-d">6 September 2026</span></a>
+      </div>
+      <div class="he-grid he-es">
+          <a class="he-card" href="/es/ensayos/nosotros-y-sicilia/"><img src="/images/ensayos/7ab34981-9bff-4adb-bf2e-d62ccf7d0779_1672x941.png" width="1672" height="941" loading="lazy" alt="Imagen de portada del ensayo «Nosotros y Sicilia»"><span class="he-t">Nosotros y Sicilia</span><span class="he-d">20 de septiembre de 2026</span></a>
+          <a class="he-card" href="/es/ensayos/dionisos-en-taormina/"><img src="/images/ensayos/f870d24a-630c-4416-8b56-be828ccf15e2_1672x941.png" width="1672" height="941" loading="lazy" alt="Imagen de portada del ensayo «Dionisos en Taormina»"><span class="he-t">Dionisos en Taormina</span><span class="he-d">13 de septiembre de 2026</span></a>
+          <a class="he-card" href="/es/ensayos/el-vacio-y-el-hombre-fuerte/"><img src="/images/ensayos/7311c6bb-8a7a-4968-abfd-8c8d8fd2df6c_1672x941.png" width="1672" height="941" loading="lazy" alt="Imagen de portada del ensayo «El vacío y el hombre fuerte»"><span class="he-t">El vacío y el hombre fuerte</span><span class="he-d">6 de septiembre de 2026</span></a>
+      </div>
+      <p class="lead-link"><a class="btn btn-solid he-btn en" href="/en/essays/">All essays →</a><a class="btn btn-solid he-btn es" href="/es/ensayos/">Todos los ensayos →</a><a class="btn" href="https://substack.com/@gilcarrasquero" target="_blank" rel="noopener"><span class="en">Read on Substack →</span><span class="es">Leer en Substack →</span></a></p>
+    </div>
+  </section>
+
+  <!-- ===================== 6 · TEACHING & SPEAKING ===================== -->
+  <section class="band" id="teaching">
+    <div class="wrap">
+      <div class="kick"><span class="en">Teaching &amp; Speaking</span><span class="es">Enseñanza y Conferencias</span></div>
+      <h2><span class="en">Teaching &amp; <em>Speaking</em></span><span class="es">Enseñanza y <em>Conferencias</em></span></h2>
+      <p><span class="en">For more than two decades, Gil has taught at the intersection of leadership and soul — to leaders and to seekers alike.</span><span class="es">Durante más de dos décadas, Gil ha enseñado en la intersección del liderazgo y el alma —a líderes y a buscadores por igual.</span></p>
+
+      <div class="subhead"><span class="en">The teacher of leaders.</span><span class="es">El maestro de líderes.</span></div>
+      <p><span class="en">Teaching Fellow at Harvard Kennedy School's Center for Public Leadership (2000–2001), working directly with Ronald Heifetz and Dean Williams. Senior Fellow at the James MacGregor Burns Leadership Academy, University of Maryland. Invited Faculty at IESA. Facilitator of the Leadership Module of the IDB/GWU Political Management Program for Latin American Leaders. He has delivered hundreds of lectures — on economics, politics, and geopolitics — and keynoted gatherings as far afield as the Jungian Scholars Association.</span><span class="es">Teaching Fellow en el Center for Public Leadership de la Harvard Kennedy School (2000–2001), trabajando directamente con Ronald Heifetz y Dean Williams. Senior Fellow en la James MacGregor Burns Leadership Academy de la Universidad de Maryland. Invited Faculty en el IESA. Facilitador del Módulo de Liderazgo del Programa de Gerencia Política del BID/GWU para Líderes Latinoamericanos. Ha dictado cientos de conferencias —sobre economía, política y geopolítica— y ha sido orador de orden en encuentros tan diversos como la Jungian Scholars Association.</span></p>
+
+      <div class="subhead"><span class="en">Transcendent Leadership.</span><span class="es">Liderazgo Trascendente.</span></div>
+      <p><span class="en">Out of that work, Gil developed his own framework. Drawing on Heifetz's adaptive leadership and Richard Pascale's complexity theory — and then moving beyond both — <b>Transcendent Leadership integrates what most leadership training leaves out: the soul.</b> It holds the polarities every leader must navigate — power and love, Logos and Pathos, authority and surrender — and treats leadership not as technique but as an alchemical process: the leader as the message, the group as a mirror, the real work beginning with the leader's own. It is the bridge between the two worlds Gil has always lived in.</span><span class="es">De ese trabajo, Gil desarrolló su propio marco. Partiendo del liderazgo adaptativo de Heifetz y la teoría de la complejidad de Richard Pascale —y yendo más allá de ambos— <b>el Liderazgo Trascendente integra lo que la mayoría de la formación en liderazgo deja afuera: el alma.</b> Sostiene las polaridades que todo líder debe navegar —poder y amor, Logos y Pathos, autoridad y entrega— y entiende el liderazgo no como técnica sino como un proceso alquímico: el líder como el mensaje, el grupo como un espejo, el verdadero trabajo comenzando por el del propio líder. Es el puente entre los dos mundos que Gil siempre ha habitado.</span></p>
+
+      <p><span class="en">Gil speaks and teaches on the death of God and the crisis of meaning, leadership after the collapse of certainty, the daimon and the vocation of the soul, and Venezuela as a warning from the future.</span><span class="es">Gil habla y enseña sobre la muerte de Dios y la crisis de sentido, el liderazgo tras el colapso de la certeza, el daimon y la vocación del alma, y Venezuela como un presagio del futuro.</span></p>
+
+      <p class="lead-link"><a href="#talks"><span class="en">→ Watch a lecture: A Map of the Soul for Times of Crisis</span><span class="es">→ Ver una conferencia: Un mapa del alma para tiempos de crisis</span></a></p>
+      <p class="lead-link"><a href="#contact"><span class="en">→ For speaking and teaching inquiries → Contact</span><span class="es">→ Para invitaciones a conferencias y enseñanza → Contacto</span></a></p>
+    </div>
+  </section>
+
+  <!-- ===================== 6b · TALKS & PODCASTS ===================== -->
+  <section class="band alt" id="talks">
+    <div class="wrap">
+      <div class="kick"><span class="en">Talks &amp; Podcasts</span><span class="es">Charlas y Podcasts</span></div>
+      <h2><span class="en">Talks &amp; <em>Podcasts</em></span><span class="es">Charlas y <em>Podcasts</em></span></h2>
+      <p><span class="en">Lectures, public conversations and recordings — the work spoken aloud.</span><span class="es">Conferencias, conversaciones públicas y grabaciones —la obra dicha en voz alta.</span></p>
+
+      <div class="video-feature">
+        <div class="subhead"><span class="en">Featured lecture.</span><span class="es">Conferencia destacada.</span></div>
+        <div class="video-frame">
+          <iframe src="https://www.youtube-nocookie.com/embed/gz6pCigsxYQ?start=222&amp;rel=0&amp;modestbranding=1"
+            title="Carl Gustav Jung. Un mapa del alma para tiempos de crisis"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+        <p class="video-caption"><span class="en"><em>Carl Gustav Jung: A Map of the Soul for Times of Crisis</em> — a lecture at La Casa Vacía, Madrid, July 2026. <a href="https://www.youtube.com/live/gz6pCigsxYQ" target="_blank" rel="noopener">Watch on YouTube →</a></span><span class="es"><em>Carl Gustav Jung. Un mapa del alma para tiempos de crisis</em> — conferencia en La Casa Vacía, Madrid, julio de 2026. <a href="https://www.youtube.com/live/gz6pCigsxYQ" target="_blank" rel="noopener">Ver en YouTube →</a></span></p>
+      </div>
+
+      <div class="subhead"><span class="en">The podcast.</span><span class="es">El podcast.</span></div>
+      <div class="pod-card">
+        <h3>On Genius</h3>
+        <div class="status"><span class="en">Launching soon</span><span class="es">Muy pronto</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 7 · CONVERSATIONS ===================== -->
+  <section class="band" id="conversations">
+    <div class="wrap">
+      <div class="kick"><span class="en">Conversations</span><span class="es">Conversaciones</span></div>
+      <h2><span class="en"><em>Conversations</em></span><span class="es"><em>Conversaciones</em></span></h2>
+      <p><span class="en">A series of recorded conversations with the voices who have most shaped this territory — on the call, the cost, and the incarnation of a life's work.</span><span class="es">Una serie de conversaciones grabadas con las voces que más han dado forma a este territorio —sobre el llamado, el costo y la encarnación de la obra de una vida.</span></p>
+      <div class="conv-grid">
+        <div class="conv-card">
+          <img src="images/lineage-hollis.jpg" alt="Gil Carrasquero with James Hollis">
+          <div class="cbody"><h3>Gil &amp; James Hollis</h3><div class="status"><span class="en">Coming soon</span><span class="es">Próximamente</span></div></div>
+        </div>
+        <div class="conv-card">
+          <img src="images/lineage-stein.jpg" alt="Gil Carrasquero with Murray Stein">
+          <div class="cbody"><h3>Gil &amp; Murray Stein</h3><div class="status"><span class="en">Coming soon</span><span class="es">Próximamente</span></div></div>
+        </div>
+        <div class="conv-card">
+          <img src="images/lineage-meade.jpg" alt="Gil Carrasquero with Michael Meade">
+          <div class="cbody"><h3>Gil &amp; Michael Meade</h3><div class="status"><span class="en">Coming soon</span><span class="es">Próximamente</span></div></div>
+        </div>
+        <div class="conv-card">
+          <img src="images/lineage-collins.jpg" alt="Gil Carrasquero with Jim Collins">
+          <div class="cbody"><h3>Gil &amp; Jim Collins</h3><div class="status"><span class="en">Coming soon</span><span class="es">Próximamente</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 8 · ADVISORY ===================== -->
+  <section class="band alt" id="advisory">
+    <div class="wrap">
+      <div class="kick"><span class="en">Advisory</span><span class="es">Asesoría</span></div>
+      <h2><span class="en"><em>Advisory</em></span><span class="es"><em>Asesoría</em></span></h2>
+      <p><span class="en">Gil works with a small number of entrepreneurs, leaders, and public-minded individuals navigating moments where strategy alone is no longer enough — moments that call for judgment, psychological depth, moral clarity, and the courage to become more fully oneself. By invitation.</span><span class="es">Gil trabaja con un número reducido de emprendedores, líderes y figuras públicas que atraviesan momentos en los que la estrategia ya no basta —momentos que piden juicio, profundidad psicológica, claridad moral y el coraje de volverse más plenamente uno mismo. Por invitación.</span></p>
+      <p class="lead-link"><a href="#contact"><span class="en">→ Enquire → Contact</span><span class="es">→ Consultar → Contacto</span></a></p>
+    </div>
+  </section>
+
+  <!-- ===================== 9 · CONTACT ===================== -->
+  <section class="band" id="contact">
+    <div class="wrap">
+      <div class="kick"><span class="en">Contact</span><span class="es">Contacto</span></div>
+      <h2><span class="en"><em>Contact</em></span><span class="es"><em>Contacto</em></span></h2>
+      <p><span class="en">For media, speaking, teaching, advisory, and general correspondence.</span><span class="es">Para prensa, conferencias, enseñanza, asesoría y correspondencia general.</span></p>
+      <div class="cta-row">
+        <div class="cta-card">
+          <div class="ct"><span class="en">Media &amp; Press</span><span class="es">Prensa y Medios</span></div>
+          <div class="cd"><span class="en">Interviews, features, and quotes.</span><span class="es">Entrevistas, reportajes y citas.</span></div>
+          <a href="#contact-form"><span class="en">Write →</span><span class="es">Escribir →</span></a>
+        </div>
+        <div class="cta-card">
+          <div class="ct"><span class="en">Speaking &amp; Teaching</span><span class="es">Conferencias y Enseñanza</span></div>
+          <div class="cd"><span class="en">Keynotes, seminars, Transcendent Leadership.</span><span class="es">Conferencias, seminarios, Liderazgo Trascendente.</span></div>
+          <a href="#contact-form"><span class="en">Enquire →</span><span class="es">Consultar →</span></a>
+        </div>
+        <div class="cta-card">
+          <div class="ct"><span class="en">Advisory</span><span class="es">Asesoría</span></div>
+          <div class="cd"><span class="en">Selective, by invitation.</span><span class="es">Selectiva, por invitación.</span></div>
+          <a href="#contact-form"><span class="en">Enquire →</span><span class="es">Consultar →</span></a>
+        </div>
+      </div>
+      <div class="contact-grid" id="contact-form">
+        <form action='/thank-you' method='POST' name='contact'>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <div class="field">
+            <label><span class="en">Subject</span><span class="es">Asunto</span></label>
+            <select name="subject" style="width:100%;background:var(--bg2);border:1px solid var(--line);padding:12px 14px;font-family:'EB Garamond',serif;font-size:18px;color:var(--ink);border-radius:2px;">
+              <option>Media &amp; Press</option>
+              <option>Speaking &amp; Teaching</option>
+              <option>Advisory</option>
+              <option>General</option>
+            </select>
+          </div>
+          <div class="field">
+            <label><span class="en">Name</span><span class="es">Nombre</span></label>
+            <input type="text" name="name" required>
+          </div>
+          <div class="field">
+            <label><span class="en">Email</span><span class="es">Correo</span></label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="field">
+            <label><span class="en">Message</span><span class="es">Mensaje</span></label>
+            <textarea name="message" required></textarea>
+          </div>
+          <button class="submit" type="submit"><span class="en">Send →</span><span class="es">Enviar →</span></button>
+        </form>
+        <div class="social-line">
+          <a href="https://substack.com/@gilcarrasquero" target="_blank" rel="noopener">Substack</a>
+          <a href="https://www.instagram.com/thereligionofgenius" target="_blank" rel="noopener">Instagram @thereligionofgenius</a>
+          <a href="https://www.linkedin.com/in/gilberto-carrasquero-naranjo-024294/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="t"><span class="en">Gil Carrasquero — writing at the fracture line between soul and politics.</span><span class="es">Gil Carrasquero — escribiendo en la línea de fractura entre el alma y la política.</span></div>
+    <div class="flinks">
+      <a href="https://gilcarrasquero.com">gilcarrasquero.com</a> ·
+      <a href="https://thereligionofgenius.com" target="_blank" rel="noopener">thereligionofgenius.com</a> ·
+      <a href="https://substack.com/@gilcarrasquero" target="_blank" rel="noopener">Substack</a> ·
+      <a href="https://www.instagram.com/thereligionofgenius" target="_blank" rel="noopener">@thereligionofgenius</a> ·
+      <a href="https://www.linkedin.com/in/gilberto-carrasquero-naranjo-024294/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.setAttribute('lang', lang);
+    var en=document.getElementById('flag-en'), es=document.getElementById('flag-es');
+    if(en) en.classList.toggle('active', lang==='en');
+    if(es) es.classList.toggle('active', lang==='es');
+    try{ localStorage.setItem('gc_lang', lang); }catch(e){}
+  }
+  (function(){
+    var saved='en';
+    try{ saved=localStorage.getItem('gc_lang')||'en'; }catch(e){}
+    setLang(saved);
+  })();
+  (function(){
+    var burger=document.getElementById('hamburger'), menu=document.getElementById('menu');
+    burger.addEventListener('click', function(){
+      var open=menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open?'true':'false');
+    });
+    menu.querySelectorAll('a.navlink').forEach(function(a){
+      a.addEventListener('click', function(){ menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+  })();
+</script>
+</body>
+</html>

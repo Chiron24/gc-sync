@@ -1,0 +1,13 @@
+{
+  "name": "gc-sync",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Keeps gilcarrasquero.com in step with Gil Carrasquero's Substack",
+  "scripts": {
+    "sync": "node scripts/sync.js",
+    "test": "node test/smoke.js && node test/sync-mock.js"
+  },
+  "dependencies": {
+    "linkedom": "0.18.12"
+  }
+}
