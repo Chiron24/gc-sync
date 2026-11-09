@@ -1,0 +1,48 @@
+name: Substack → web
+
+on:
+  schedule:
+    - cron: '23 */2 * * *'      # cada 2 horas
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'production = publicar en la web · draft = solo borrador en Netlify · dry-run = probar sin tocar nada'
+        type: choice
+        options: [production, draft, dry-run]
+        default: production
+      refresh:
+        description: 'Opcional: slug(s) de Substack a regenerar aunque ya estén en la web (p. ej. tras corregir una errata)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: gc-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --no-audit --no-fund
+      - name: Sincronizar
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ vars.NETLIFY_SITE_ID }}
+          MODE: ${{ inputs.mode || 'production' }}
+          REFRESH: ${{ inputs.refresh || '' }}
+        run: node scripts/sync.js
+      - name: Informe y avisos
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: node scripts/report.js
