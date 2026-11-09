@@ -31,7 +31,7 @@ const MODE = (process.env.MODE || 'production').trim();
 const REFRESH = (process.env.REFRESH || '').split(/[\s,]+/).filter(Boolean);
 const SINCE = process.env.SINCE || '2026-05-01';
 const TOKEN = process.env.NETLIFY_AUTH_TOKEN;
-const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36 gc-sync';
+const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36';
 const TEMPLATE = { en: '/en/essays/sicily-and-us/', es: '/es/ensayos/nosotros-y-sicilia/' };
 
 const log = (...a) => console.log('[gc-sync]', ...a);
@@ -60,32 +60,80 @@ async function netlify(path, opts = {}) {
 }
 
 // ------------------------------------------------------------------ Substack
+// Substack sits behind Cloudflare, which sometimes refuses requests from cloud servers
+// (GitHub's included). We try several polite identities on three routes — the API, the
+// RSS feed, and an RSS relay — and record which one worked in the run log.
+const IDENTITIES = [
+  { 'User-Agent': 'gc-sync/1.1 (+https://gilcarrasquero.com)' },
+  { 'User-Agent': 'Mozilla/5.0 (compatible; gc-sync/1.1; +https://gilcarrasquero.com)' },
+  { 'User-Agent': 'Feedly/1.0 (+http://www.feedly.com/fetcher.html; like FeedFetcher-Google)' },
+  { 'User-Agent': UA, 'Accept-Language': 'en-US,en;q=0.9,es;q=0.8' },
+];
+const attempts = [];
+async function fromSubstack(url, as) {
+  const mine = [];
+  for (const h of IDENTITIES) {
+    try {
+      const r = await fetch(url, { headers: { Accept: as === 'json' ? 'application/json' : 'application/rss+xml, application/xml;q=0.9, */*;q=0.8', ...h } });
+      mine.push(r.status);
+      attempts.push(`${r.status} ${url.replace(SUBSTACK, '')} [${h['User-Agent'].slice(0, 30)}]`);
+      if (r.ok) return as === 'json' ? r.json() : r.text();
+    } catch (e) { mine.push('ERR'); attempts.push(`ERR ${url} ${e.message}`); }
+    await sleep(800);
+  }
+  throw new Error(`${url.replace(SUBSTACK, 'substack')} refused (${mine.join('/')})`);
+}
+const stripTags = s => String(s || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+function rssItems(xml) {
+  const doc = new DOMParser().parseFromString(xml, 'text/xml');
+  return [...doc.querySelectorAll('item')].map(it => {
+    const pick = sel => { const n = it.querySelector(sel); return n ? n.textContent.trim() : ''; };
+    const link = pick('link');
+    const enc = it.querySelector('enclosure');
+    const body = [...it.childNodes].find(n => n.nodeName === 'content:encoded');
+    return { slug: (link.split('/p/')[1] || '').split(/[?#]/)[0], title: pick('title'), subtitle: stripTags(pick('description')), post_date: new Date(pick('pubDate')).toISOString(), canonical_url: link, cover_image: enc ? enc.getAttribute('url') : null, audience: 'everyone', type: 'newsletter', body_html: body ? body.textContent : null };
+  });
+}
+async function rssRelay() {
+  const j = await get('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(SUBSTACK + '/feed'), { as: 'json', headers: { 'User-Agent': IDENTITIES[0]['User-Agent'] } });
+  if (j.status !== 'ok' || !Array.isArray(j.items)) throw new Error('rss relay: ' + (j.message || j.status));
+  return j.items.map(it => {
+    const sub = stripTags(it.description);
+    return { slug: (String(it.link || '').split('/p/')[1] || '').split(/[?#]/)[0], title: it.title, subtitle: sub.length <= 300 && sub !== stripTags(it.content).slice(0, sub.length) ? sub : '', post_date: new Date(String(it.pubDate).replace(' ', 'T') + 'Z').toISOString(), canonical_url: it.link, cover_image: (it.enclosure && it.enclosure.link) || it.thumbnail || null, audience: 'everyone', type: 'newsletter', body_html: it.content || null };
+  });
+}
+let rssCache = null;
+async function rssAny() {
+  if (rssCache) return rssCache;
+  try { rssCache = { source: 'rss', list: rssItems(await fromSubstack(`${SUBSTACK}/feed`, 'text')) }; }
+  catch (e) { log('RSS failed (' + e.message + '), trying the RSS relay'); rssCache = { source: 'rss-relay', list: await rssRelay() }; }
+  return rssCache;
+}
 async function substackPosts() {
   try {
-    const j = await get(`${SUBSTACK}/api/v1/archive?sort=new&limit=12`, { as: 'json' });
+    const j = await fromSubstack(`${SUBSTACK}/api/v1/archive?sort=new&limit=12`, 'json');
     const list = Array.isArray(j) ? j : j.posts;
     if (!Array.isArray(list)) throw new Error('unexpected archive shape');
     return { source: 'api', list: list.map(p => ({ slug: p.slug, title: p.title, subtitle: p.subtitle, post_date: p.post_date, canonical_url: p.canonical_url, cover_image: p.cover_image, audience: p.audience, type: p.type })) };
   } catch (e) {
     log('archive API failed (' + e.message + '), falling back to RSS');
-    const xml = await get(`${SUBSTACK}/feed`);
-    const doc = new DOMParser().parseFromString(xml, 'text/xml');
-    const list = [...doc.querySelectorAll('item')].map(it => {
-      const pick = sel => { const n = it.querySelector(sel); return n ? n.textContent.trim() : ''; };
-      const link = pick('link');
-      const enc = it.querySelector('enclosure');
-      const body = [...it.childNodes].find(n => n.nodeName === 'content:encoded');
-      return { slug: link.split('/p/')[1], title: pick('title'), subtitle: pick('description'), post_date: new Date(pick('pubDate')).toISOString(), canonical_url: link, cover_image: enc ? enc.getAttribute('url') : null, audience: 'everyone', type: 'newsletter', body_html: body ? body.textContent : null };
-    });
-    return { source: 'rss', list };
+    return rssAny();
   }
 }
 async function substackBody(p) {
   if (p.body_html) return p.body_html;
-  const j = await get(`${SUBSTACK}/api/v1/posts/${p.slug}`, { as: 'json' });
-  if (j.audience && j.audience !== 'everyone') throw new Error('post is not public: ' + p.slug);
-  if (!j.body_html) throw new Error('no body for ' + p.slug);
-  return j.body_html;
+  try {
+    const j = await fromSubstack(`${SUBSTACK}/api/v1/posts/${p.slug}`, 'json');
+    if (j.audience && j.audience !== 'everyone') throw new Error('post is not public: ' + p.slug);
+    if (j.body_html) return j.body_html;
+  } catch (e) {
+    if (/not public/.test(e.message)) throw e;
+    log('post API failed (' + e.message + '), taking the text from RSS');
+  }
+  const { list } = await rssAny();
+  const it = list.find(x => x.slug === p.slug);
+  if (!it || !it.body_html) throw new Error('no body for ' + p.slug + ' in the API or the RSS feed');
+  return it.body_html;
 }
 
 // ------------------------------------------------------------------ main
@@ -112,7 +160,7 @@ async function substackBody(p) {
     p.audience === 'everyone' && (!p.type || p.type === 'newsletter') && p.post_date && p.post_date.slice(0, 10) >= SINCE &&
     new Date(p.post_date) <= new Date() &&
     (!onSite.has(canon(p)) || REFRESH.some(r => r === p.slug || canon({ canonical_url: r }) === canon(p))));
-  const report = { date: new Date().toISOString(), mode: MODE, source, added: [], skipped: [], deploy: null };
+  const report = { date: new Date().toISOString(), mode: MODE, source, attempts, added: [], skipped: [], deploy: null };
 
   if (!wanted.length) {
     log('nothing new — the site is up to date');
@@ -197,6 +245,7 @@ async function substackBody(p) {
   fs.writeFileSync('report.json', JSON.stringify(report, null, 2));
 })().catch(e => {
   console.error('[gc-sync] FAILED:', e.stack || e.message);
+  if (attempts.length) console.error('[gc-sync] Substack attempts:\n  ' + attempts.join('\n  '));
   try { fs.writeFileSync('report.json', JSON.stringify({ error: e.message, date: new Date().toISOString(), mode: MODE }, null, 2)); } catch (_) {}
   process.exit(1);
 });
