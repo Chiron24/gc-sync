@@ -8,3 +8,8 @@
 - 2026-11-15 · EN · [La Bola Negra: The Price of Being Yourself](https://gilcarrasquero.com/en/essays/la-bola-negra-the-price-of-being-yourself/) ← https://gilcarrasquero.substack.com/p/la-bola-negra-the-price-of-being
 - 2026-11-15 · ES · [La bola negra: el precio de ser uno mismo](https://gilcarrasquero.com/es/ensayos/la-bola-negra-el-precio-de-ser-uno-mismo/) ← https://gilcarrasquero.substack.com/p/la-bola-negra-the-price-of-being
 - Netlify deploy 6afa6dd6ae4019acdac6d5b0 (anterior: 6af3196b7328e32e9d24424b)
+
+## 2026-11-23 00:50 UTC
+- 2026-11-22 · EN · [The Golden Castle](https://gilcarrasquero.com/en/essays/the-golden-castle/) ← https://gilcarrasquero.substack.com/p/the-golden-castle-el-castillo-dorado
+- 2026-11-22 · ES · [El castillo dorado](https://gilcarrasquero.com/es/ensayos/el-castillo-dorado/) ← https://gilcarrasquero.substack.com/p/the-golden-castle-el-castillo-dorado
+- Netlify deploy 6b038dba544945782d227de5 (anterior: 6afa6dd6ae4019acdac6d5b0)
